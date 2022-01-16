@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Это домашняя страница </title>
+        <script>
+            function Save(){
+                var data = new Object;
+                data.name = document.getElementById("name").value;
+                data.Email = document.getElementById("Email").value;
+                data.Tel = document.getElementById("Tel").value;
+                data.Memo = document.getElementById("Mome").value;
+                var str = JSON.stringify(data);
+                localStorage.setItem(data.name,str);
+                alert("Save Seuccessfully!");
+            }
+            function Load(id){
+                var findName = document.getElementById('find').value;
+                var ans = localStorage.getItem(findName);
+                var data = JSON.parse(ans);
+                var result = "Name: "+data.name+"<br>";
+                result += "Email: "+data.Email+"<br>";
+                result += "Tel: "+data.Tel+"<br>";
+                result += "Memo: "+data.Memo+"<br>";
+                var target = document.getElementById(id);
+                target.innerHTML = result;
+            }
+        </script>
+    </head>
+    <body>
+        <table>
+            <tr><td>Имя：</td><td><input type="text" id="name"></td></tr>
+            <tr><td>Email：</td><td><input type="text" id="Email"></td></tr>
+            <tr><td>Tel：</td><td><input type="text" id="Tel"></td></tr>
+            <tr><td>Mome：</td><td><input type="text" id="Mome"></td></tr>
+            <tr>
+                <td></td>
+                <td><input type="button" value="save" onclick="Save()"></td>
+            </tr>
+        </table>
+    </body>
+</html>
